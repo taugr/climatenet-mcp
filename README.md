@@ -22,6 +22,33 @@ pnpm build
 pnpm smoke
 ```
 
+## Cloudflare Workers
+
+The Worker entrypoint exposes the same MCP tools through Cloudflare's Streamable HTTP
+handler at `/mcp`.
+
+```bash
+pnpm dev:worker
+```
+
+The local Worker endpoint is:
+
+```text
+http://localhost:8788/mcp
+```
+
+Deploy with:
+
+```bash
+pnpm deploy:worker
+```
+
+The deployed endpoint will be:
+
+```text
+https://climatenet-mcp.<account>.workers.dev/mcp
+```
+
 ## Tools
 
 - `list_devices` - list ClimateNet devices with optional status, region, issue, and sensor filters.
