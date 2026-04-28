@@ -1,11 +1,22 @@
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import express from "express";
+import { corsHeaders } from "./cors.js";
 import { createClimateNetMcpServer, createServer } from "./mcp.js";
 
 export { createClimateNetMcpServer, createServer };
 
 export const app = express();
+app.use((_req, res, next) => {
+  Object.entries(corsHeaders).forEach(([name, value]) => {
+    res.setHeader(name, value);
+  });
+  next();
+});
 app.use(express.json({ limit: "2mb" }));
+
+app.options("*", (_req, res) => {
+  res.status(204).end();
+});
 
 app.get("/health", (_req, res) => {
   res.json({ ok: true, name: "climatenet-mcp" });

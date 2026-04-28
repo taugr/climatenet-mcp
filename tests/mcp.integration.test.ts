@@ -51,6 +51,25 @@ describe("ClimateNet MCP HTTP integration", () => {
     });
   });
 
+  it("handles browser CORS preflight requests", async () => {
+    const response = await fetch(endpoint, {
+      method: "OPTIONS",
+      headers: {
+        origin: "http://localhost:5173",
+        "access-control-request-method": "POST",
+        "access-control-request-headers": "content-type,mcp-session-id",
+      },
+    });
+
+    expect(response.status).toBe(204);
+    expect(response.headers.get("access-control-allow-origin")).toBe("*");
+    expect(response.headers.get("access-control-allow-methods")).toContain("POST");
+    expect(response.headers.get("access-control-allow-headers")?.toLowerCase()).toContain(
+      "mcp-session-id",
+    );
+    expect(response.headers.get("access-control-expose-headers")).toContain("Mcp-Session-Id");
+  });
+
   it("calls representative tools through MCP", async () => {
     await withClient(async (client) => {
       const devices = await callJson(client, "list_devices", { region: "Yerevan" });

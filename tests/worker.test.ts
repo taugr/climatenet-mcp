@@ -17,6 +17,7 @@ describe("Cloudflare Worker entrypoint", () => {
     );
 
     expect(response.status).toBe(200);
+    expect(response.headers.get("access-control-allow-origin")).toBe("*");
     await expect(response.json()).resolves.toEqual({ ok: true, name: "climatenet-mcp" });
   });
 
@@ -28,6 +29,7 @@ describe("Cloudflare Worker entrypoint", () => {
     );
 
     expect(response.status).toBe(200);
+    expect(response.headers.get("access-control-allow-origin")).toBe("*");
     await expect(response.text()).resolves.toContain("Use /mcp with an MCP client");
   });
 });
