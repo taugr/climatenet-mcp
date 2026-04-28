@@ -172,7 +172,7 @@ export function createServer(): McpServer {
   return server;
 }
 
-const app = express();
+export const app = express();
 app.use(express.json({ limit: "2mb" }));
 
 app.get("/health", (_req, res) => {

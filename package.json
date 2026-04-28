@@ -7,6 +7,8 @@
     "build": "tsc --noEmit",
     "dev": "tsx src/server.ts",
     "start": "node dist/server.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "smoke": "tsx scripts/smoke.ts",
     "smoke:edge": "tsx scripts/edge-smoke.ts"
   },
@@ -19,6 +21,7 @@
     "@types/express": "^4.17.21",
     "@types/node": "^22.10.2",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^4.1.5"
   }
 }
