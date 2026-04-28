@@ -1,5 +1,3 @@
-import { vi } from "vitest";
-
 const realFetch = globalThis.fetch;
 
 export const SAMPLE_PUBLIC_RESPONSE = {

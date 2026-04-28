@@ -1,4 +1,3 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
 import { installClimateNetFetchMock } from "./test-utils.js";
 
 describe("ClimateNet client", () => {
