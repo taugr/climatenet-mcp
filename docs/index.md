@@ -26,4 +26,9 @@ features:
   - icon: "🤖"
     title: Agent-Friendly Tools
     details: Use read-only tools with structured parameters and JSON responses for safe data exploration.
+  - icon: "🧩"
+    title: Claude Plugin
+    details: Install as a Claude Code or Cowork plugin to get the MCP server plus a skill that guides Claude through chained queries.
+    link: /guide/plugin
+    linkText: Install the plugin
 ---

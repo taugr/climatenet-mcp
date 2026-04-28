@@ -48,9 +48,13 @@ claude mcp get climatenet
 claude mcp list
 ```
 
-## Claude Desktop
+::: tip Looking for the plugin install?
+For Claude Code and Cowork, install the [Plugin](/guide/plugin) instead — it bundles this server with a skill that helps Claude use the tools effectively.
+:::
 
-Claude Desktop can connect to remote MCP servers through custom connectors. Add a custom remote connector in Claude's Connectors settings with this URL:
+## Claude Desktop (Chat)
+
+Claude Desktop's Chat tab connects to remote MCP servers through custom connectors. Add a custom remote connector in **Settings → Connectors** with this URL:
 
 ```text
 https://climatenet-mcp.tomauger.am/mcp

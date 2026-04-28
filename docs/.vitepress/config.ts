@@ -87,6 +87,7 @@ export default defineConfig({
         items: [
           { text: "Overview", link: "/guide/" },
           { text: "Getting Started", link: "/guide/getting-started" },
+          { text: "Plugin", link: "/guide/plugin" },
           { text: "Deployment", link: "/guide/deployment" },
         ],
       },
@@ -123,6 +124,7 @@ export default defineConfig({
           items: [
             { text: "What Is climatenet-mcp?", link: "/guide/" },
             { text: "Getting Started", link: "/guide/getting-started" },
+            { text: "Plugin", link: "/guide/plugin" },
           ],
         },
         {
