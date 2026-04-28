@@ -28,9 +28,7 @@ const metricSchema = z.enum([
   "speed",
   "rain",
 ]);
-const dateSchema = z
-  .string()
-  .regex(/^\d{4}-\d{2}-\d{2}$/, "Use YYYY-MM-DD format");
+const dateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Use YYYY-MM-DD format");
 
 export function createServer(): McpServer {
   const server = new McpServer(
@@ -47,11 +45,25 @@ export function createServer(): McpServer {
       description:
         "List ClimateNet environmental monitoring devices. Filter by region, online/offline status, issue presence, or sensor health.",
       inputSchema: {
-        region: z.string().optional().describe("Region or province name, for example Yerevan or Shirak."),
+        region: z
+          .string()
+          .optional()
+          .describe("Region or province name, for example Yerevan or Shirak."),
         status: deviceStatusSchema.optional().describe("Device status filter."),
-        has_issues: z.boolean().optional().describe("When true, only devices with reported issues. When false, only devices without issues."),
-        sensor: sensorNameSchema.optional().describe("Sensor to filter by. Without sensor_status this returns devices where the sensor is valid."),
-        sensor_status: sensorStatusSchema.optional().describe("Sensor status to match when sensor is provided."),
+        has_issues: z
+          .boolean()
+          .optional()
+          .describe(
+            "When true, only devices with reported issues. When false, only devices without issues.",
+          ),
+        sensor: sensorNameSchema
+          .optional()
+          .describe(
+            "Sensor to filter by. Without sensor_status this returns devices where the sensor is valid.",
+          ),
+        sensor_status: sensorStatusSchema
+          .optional()
+          .describe("Sensor status to match when sensor is provided."),
       },
       annotations: { readOnlyHint: true },
     },
@@ -73,7 +85,11 @@ export function createServer(): McpServer {
       description:
         "Get metadata, coordinates, sensor health, current status, and reported issues for one ClimateNet device.",
       inputSchema: {
-        device_id: z.number().int().positive().describe("ClimateNet generated_id from list_devices."),
+        device_id: z
+          .number()
+          .int()
+          .positive()
+          .describe("ClimateNet generated_id from list_devices."),
       },
       annotations: { readOnlyHint: true },
     },
@@ -86,7 +102,11 @@ export function createServer(): McpServer {
       description:
         "Get the latest available reading for one ClimateNet device, including temperature, humidity, particulate matter, wind, rain, UV, and light.",
       inputSchema: {
-        device_id: z.number().int().positive().describe("ClimateNet generated_id from list_devices."),
+        device_id: z
+          .number()
+          .int()
+          .positive()
+          .describe("ClimateNet generated_id from list_devices."),
       },
       annotations: { readOnlyHint: true },
     },
@@ -99,9 +119,17 @@ export function createServer(): McpServer {
       description:
         "Get ClimateNet readings from the documented public API. Without dates it returns roughly the latest 24 hours. With dates, provide both start_date and end_date.",
       inputSchema: {
-        device_id: z.number().int().positive().describe("ClimateNet generated_id from list_devices."),
-        start_date: dateSchema.optional().describe("Start date in YYYY-MM-DD format. Must be paired with end_date."),
-        end_date: dateSchema.optional().describe("End date in YYYY-MM-DD format. Must be paired with start_date."),
+        device_id: z
+          .number()
+          .int()
+          .positive()
+          .describe("ClimateNet generated_id from list_devices."),
+        start_date: dateSchema
+          .optional()
+          .describe("Start date in YYYY-MM-DD format. Must be paired with end_date."),
+        end_date: dateSchema
+          .optional()
+          .describe("End date in YYYY-MM-DD format. Must be paired with start_date."),
       },
       annotations: { readOnlyHint: true },
     },
@@ -121,10 +149,16 @@ export function createServer(): McpServer {
       description:
         "Get chart-ready 15-minute ClimateNet time-series data for one device and date range. Optionally reduce output to one metric.",
       inputSchema: {
-        device_id: z.number().int().positive().describe("ClimateNet generated_id from list_devices."),
+        device_id: z
+          .number()
+          .int()
+          .positive()
+          .describe("ClimateNet generated_id from list_devices."),
         start_date: dateSchema.describe("Start date in YYYY-MM-DD format."),
         end_date: dateSchema.describe("End date in YYYY-MM-DD format."),
-        metric: metricSchema.optional().describe(`Optional metric. Supported: ${supportedMetrics().join(", ")}.`),
+        metric: metricSchema
+          .optional()
+          .describe(`Optional metric. Supported: ${supportedMetrics().join(", ")}.`),
       },
       annotations: { readOnlyHint: true },
     },
@@ -154,7 +188,9 @@ export function createServer(): McpServer {
           .describe("ClimateNet generated_id values from list_devices."),
         start_date: dateSchema.describe("Start date in YYYY-MM-DD format."),
         end_date: dateSchema.describe("End date in YYYY-MM-DD format."),
-        metric: metricSchema.describe(`Metric to compare. Supported: ${supportedMetrics().join(", ")}.`),
+        metric: metricSchema.describe(
+          `Metric to compare. Supported: ${supportedMetrics().join(", ")}.`,
+        ),
       },
       annotations: { readOnlyHint: true },
     },
@@ -179,7 +215,11 @@ app.get("/health", (_req, res) => {
   res.json({ ok: true, name: "climatenet-mcp" });
 });
 
-app.post("/mcp", async (req, res) => {
+app.post("/mcp", (req, res) => {
+  void handleMcpRequest(req, res);
+});
+
+async function handleMcpRequest(req: express.Request, res: express.Response): Promise<void> {
   const server = createServer();
   const transport = new StreamableHTTPServerTransport({
     sessionIdGenerator: undefined,
@@ -204,7 +244,7 @@ app.post("/mcp", async (req, res) => {
       });
     }
   }
-});
+}
 
 const port = Number(process.env.PORT ?? 3000);
 

@@ -11,6 +11,14 @@ const client = new Client({
 
 const transport = new StreamableHTTPClientTransport(new URL(endpoint));
 
+interface DeviceSummary {
+  generated_id: number;
+}
+
+interface LatestReading {
+  time: string;
+}
+
 try {
   await client.connect(transport);
   const tools = await client.listTools();
@@ -21,14 +29,19 @@ try {
   assert(Array.isArray(devices), "list_devices should return an array");
   assert(devices.length > 0, "list_devices should return at least one device");
 
-  const deviceId = devices[0].generated_id;
+  const deviceId = (devices[0] as DeviceSummary).generated_id;
   assert(typeof deviceId === "number", "device generated_id should be numeric");
 
-  const device = await callJson("get_device", { device_id: deviceId });
+  const device = (await callJson("get_device", { device_id: deviceId })) as DeviceSummary;
   assert(device.generated_id === deviceId, "get_device should return the requested device");
 
-  const latest = await callJson("get_latest_reading", { device_id: deviceId });
-  assert(latest === null || typeof latest.time === "string", "get_latest_reading should return a reading or null");
+  const latest = (await callJson("get_latest_reading", {
+    device_id: deviceId,
+  })) as LatestReading | null;
+  assert(
+    latest === null || typeof latest.time === "string",
+    "get_latest_reading should return a reading or null",
+  );
 
   const graph = await callJson("get_device_graph", {
     device_id: deviceId,
@@ -38,7 +51,10 @@ try {
   });
   assert(Array.isArray(graph), "get_device_graph should return an array");
   assert(graph.length > 0, "get_device_graph should return points");
-  assert("time" in graph[0] && "value" in graph[0], "metric graph points should have time and value");
+  assert(
+    "time" in graph[0] && "value" in graph[0],
+    "metric graph points should have time and value",
+  );
 
   const readings = await callJson("get_device_readings", {
     device_id: deviceId,
@@ -63,7 +79,7 @@ try {
   await client.close();
 }
 
-async function callJson(name: string, args: Record<string, unknown>): Promise<any> {
+async function callJson(name: string, args: Record<string, unknown>): Promise<unknown> {
   const result = await client.callTool({ name, arguments: args });
   const content = result.content as TextContent[] | undefined;
   const firstContent = content?.[0];
@@ -71,7 +87,7 @@ async function callJson(name: string, args: Record<string, unknown>): Promise<an
     throw new Error(`${name} did not return text content`);
   }
 
-  return JSON.parse(firstContent.text);
+  return JSON.parse(firstContent.text) as unknown;
 }
 
 function assert(condition: unknown, message: string): asserts condition {

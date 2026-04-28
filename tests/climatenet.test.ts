@@ -30,9 +30,9 @@ describe("ClimateNet client", () => {
     const fetchMock = installClimateNetFetchMock();
     const { getDeviceReadings } = await import("../src/climatenet.js");
 
-    await expect(
-      getDeviceReadings({ deviceId: 8, startDate: "2026-04-27" }),
-    ).rejects.toThrow("start_date and end_date must be supplied together");
+    await expect(getDeviceReadings({ deviceId: 8, startDate: "2026-04-27" })).rejects.toThrow(
+      "start_date and end_date must be supplied together",
+    );
     expect(fetchMock).not.toHaveBeenCalled();
   });
 

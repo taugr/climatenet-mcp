@@ -2,7 +2,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import type { TextContent } from "@modelcontextprotocol/sdk/types.js";
 import type { Server } from "node:http";
-import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { installClimateNetFetchMock } from "./test-utils.js";
 
 describe("ClimateNet MCP HTTP integration", () => {

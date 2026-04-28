@@ -26,7 +26,8 @@ export const SAMPLE_PUBLIC_RESPONSE = {
 
 export function installClimateNetFetchMock() {
   const fetchMock = vi.fn(async (input: string | URL | Request, init?: RequestInit) => {
-    const url = typeof input === "string" ? input : input instanceof URL ? input.toString() : input.url;
+    const url =
+      typeof input === "string" ? input : input instanceof URL ? input.toString() : input.url;
 
     if (url.startsWith("http://127.0.0.1:") || url.startsWith("http://localhost:")) {
       return realFetch(input, init);
