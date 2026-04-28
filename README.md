@@ -15,6 +15,14 @@
 
 > `climatenet-mcp` is an independent project and is not affiliated with, endorsed by, or maintained by ClimateNet.
 
+## About ClimateNet
+
+[ClimateNet](https://climatenet.am/en) is an Armenian environmental monitoring
+network that publishes data from monitoring devices across the country. This MCP
+server wraps ClimateNet's [public API](https://climatenet.am/en/api/) so agents
+can discover devices, inspect sensor status, and query readings through
+structured MCP tools.
+
 ## Features
 
 - 🌐 Hosted Streamable HTTP MCP endpoint
