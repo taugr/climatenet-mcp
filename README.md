@@ -1,6 +1,27 @@
 # ClimateNet MCP
 
-MCP server exposing ClimateNet environmental monitoring data.
+<p align="center">
+  <img src="./docs/public/logo.svg" alt="climatenet-mcp logo" width="160" />
+  <br />
+  <a href="https://climatenet-mcp.tomauger.am/mcp">
+    <img src="https://img.shields.io/badge/MCP-Streamable%20HTTP-2e8b57" alt="MCP endpoint" />
+  </a>
+  <a href="./LICENSE">
+    <img src="https://img.shields.io/github/license/tom-auger/climatenet-mcp" alt="license" />
+  </a>
+  <br />
+  MCP server for querying ClimateNet environmental monitoring data from Armenia through Codex, Claude, and other MCP clients.
+</p>
+
+> `climatenet-mcp` is an independent project and is not affiliated with, endorsed by, or maintained by ClimateNet.
+
+## Features
+
+- 🌐 Hosted Streamable HTTP MCP endpoint
+- 🇦🇲 ClimateNet environmental monitoring data from Armenia
+- 📍 Device discovery with region, status, issue, and sensor filters
+- 📈 Latest readings, historical readings, graph data, and device comparisons
+- 🤖 Read-only tools designed for agent and assistant workflows
 
 ## Quickstart
 
