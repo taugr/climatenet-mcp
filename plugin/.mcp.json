@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "climatenet": {
+      "type": "http",
+      "url": "https://climatenet-mcp.tomauger.am/mcp"
+    }
+  }
+}

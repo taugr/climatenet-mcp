@@ -79,10 +79,10 @@ claude mcp get climatenet
 claude mcp list
 ```
 
-### Claude Desktop
+### Claude Desktop (Chat)
 
-Claude Desktop does not currently have the same CLI install command. Add a custom
-remote connector in Claude's Connectors settings with this URL:
+Claude Desktop's Chat tab does not support plugins, only MCP connectors. Add a
+custom remote connector in **Settings → Connectors** with this URL:
 
 ```text
 https://climatenet-mcp.tomauger.am/mcp
@@ -102,6 +102,36 @@ Alternatively, bridge it through `mcp-remote` in `claude_desktop_config.json`:
 ```
 
 Restart Claude Desktop after updating the config.
+
+## Plugin (Claude Code & Cowork)
+
+For Claude Code and Cowork users, this repo also ships as a plugin that bundles the MCP server with a `climatenet-query` skill that teaches Claude how to chain the tools effectively.
+
+### Claude Code (via marketplace)
+
+```bash
+/plugin marketplace add tom-auger/climatenet-mcp
+/plugin install climatenet@climatenet-mcp
+```
+
+Or, from a local clone:
+
+```bash
+/plugin marketplace add /path/to/climatenet-mcp
+/plugin install climatenet@climatenet-mcp
+```
+
+### Cowork
+
+Cowork lives inside the Claude Desktop app under the **Cowork** tab.
+
+1. Download `climatenet.plugin` from the [latest release](https://github.com/tom-auger/climatenet-mcp/releases/latest)
+2. Open Claude Desktop and switch to the **Cowork** tab
+3. In the left sidebar, click **Customize**
+4. Click **Browse plugins**, then choose **upload a custom plugin file**
+5. Select the `climatenet.plugin` file you downloaded
+
+The plugin saves locally to your machine and the `climatenet-query` skill plus MCP server become available immediately.
 
 ## Tools
 

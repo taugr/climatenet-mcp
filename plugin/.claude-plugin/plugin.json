@@ -1,0 +1,10 @@
+{
+  "name": "climatenet",
+  "version": "0.1.0",
+  "description": "Query ClimateNet environmental monitoring data from Armenia — devices, sensors, readings, and comparisons.",
+  "author": {
+    "name": "Tom Auger"
+  },
+  "homepage": "https://climatenet-mcp.tomauger.am",
+  "keywords": ["climate", "environment", "armenia", "sensors", "monitoring"]
+}

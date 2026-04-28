@@ -1,0 +1,16 @@
+{
+  "name": "climatenet-mcp",
+  "owner": {
+    "name": "Tom Auger"
+  },
+  "plugins": [
+    {
+      "name": "climatenet",
+      "source": "./plugin",
+      "description": "Query ClimateNet environmental monitoring data from Armenia — devices, sensors, readings, and comparisons.",
+      "version": "0.1.0",
+      "category": "data",
+      "keywords": ["climate", "environment", "armenia", "sensors", "monitoring", "air-quality"]
+    }
+  ]
+}
