@@ -17,11 +17,14 @@
 
 ## About ClimateNet
 
-[ClimateNet](https://climatenet.am/en) is an Armenian environmental monitoring
-network that publishes data from monitoring devices across the country. This MCP
-server wraps ClimateNet's [public API](https://climatenet.am/en/api/) so agents
-can discover devices, inspect sensor status, and query readings through
-structured MCP tools.
+[ClimateNet](https://climatenet.am/en) provides real-time environmental
+monitoring for temperature, humidity, and air quality through devices across
+Armenia. The ClimateNet site lists
+[TUMO - Center for Creative Technologies](https://tumo.org/) as a partner and
+links to [TUMO Labs project resources](https://tumolabs.am/en/upcoming-projects/)
+and channels. This MCP server wraps ClimateNet's
+[public API](https://climatenet.am/en/api/) so agents can discover devices,
+inspect sensor status, and query readings through structured MCP tools.
 
 ## Features
 
