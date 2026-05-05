@@ -14,7 +14,7 @@ app.use((_req, res, next) => {
 });
 app.use(express.json({ limit: "2mb" }));
 
-app.options("*", (_req, res) => {
+app.options(/.*/, (_req, res) => {
   res.status(204).end();
 });
 
