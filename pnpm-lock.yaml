@@ -12,8 +12,8 @@ importers:
         specifier: ^1.18.1
         version: 1.29.0(@cfworker/json-schema@4.1.1)(zod@4.4.3)
       agents:
-        specifier: ^0.11.6
-        version: 0.11.6(@babel/core@7.29.0)(@babel/runtime@7.29.2)(@cloudflare/workers-types@4.20260426.1)(ai@6.0.168(zod@4.4.3))(rolldown@1.0.0-rc.17)(vite@8.0.10(@types/node@22.19.17)(esbuild@0.27.7)(tsx@4.21.0)(yaml@2.8.3))(zod@4.4.3)
+        specifier: ^0.12.0
+        version: 0.12.3(@babel/core@7.29.0)(@babel/runtime@7.29.2)(@cloudflare/workers-types@4.20260426.1)(ai@6.0.168(zod@4.4.3))(rolldown@1.0.0-rc.17)(vite@8.0.10(@types/node@22.19.17)(esbuild@0.27.7)(tsx@4.21.0)(yaml@2.8.3))(zod@4.4.3)
       express:
         specifier: ^5.0.0
         version: 5.2.1
@@ -1818,12 +1818,12 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  agents@0.11.6:
-    resolution: {integrity: sha512-Tdyt0+lPhp3Hpb9VbcYmIz85cT8f0O9od0setGLZdxn0ww0M2opR5x0jeReyuSQbGR3LMc1rPJbmuiKZd5KfdA==}
+  agents@0.12.3:
+    resolution: {integrity: sha512-DZn90m9TEhaVjAb9UAsc5BeBlZRaC0eet18Hz1uMXr+YZdsRrL/RkSSyzf3v3xkBmnBYCCVw7+3/i4bVsYCVRQ==}
     hasBin: true
     peerDependencies:
-      '@cloudflare/ai-chat': '>=0.0.8 <1.0.0'
-      '@cloudflare/codemode': '>=0.0.7 <1.0.0'
+      '@cloudflare/ai-chat': '>=0.6.1 <1.0.0'
+      '@cloudflare/codemode': '>=0.3.4 <1.0.0'
       '@tanstack/ai': '>=0.10.2 <1.0.0'
       '@x402/core': ^2.0.0
       '@x402/evm': ^2.0.0
@@ -2642,18 +2642,13 @@ packages:
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
-  nanoid@3.3.11:
-    resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
-    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-
   nanoid@3.3.12:
     resolution: {integrity: sha512-ZB9RH/39qpq5Vu6Y+NmUaFhQR6pp+M2Xt76XBnEwDaGcVAqhlvxrl3B2bKS5D3NH3QR76v3aSrKaF/Kiy7lEtQ==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nanoid@5.1.9:
-    resolution: {integrity: sha512-ZUvP7KeBLe3OZ1ypw6dI/TzYJuvHP77IM4Ry73waSQTLn8/g8rpdjfyVAh7t1/+FjBtG4lCP42MEbDxOsRpBMw==}
+  nanoid@5.1.11:
+    resolution: {integrity: sha512-v+KEsUv2ps74PaSKv0gHTxTCgMXOIfBEbaqa6w6ISIGC7ZsvHN4N9oJ8d4cmf0n5oTzQz2SLmThbQWhjd/8eKg==}
     engines: {node: ^18 || >=20}
     hasBin: true
 
@@ -2715,8 +2710,8 @@ packages:
     resolution: {integrity: sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==}
     engines: {node: '>= 0.8'}
 
-  partyserver@0.5.4:
-    resolution: {integrity: sha512-YQMBQsbAewmoRc/MYEM+LDfN8UN3O6FGToKel0TqwFJQXEaBPaGrqLZE3LBUPDpFwV0HOOkkHBYFcTHjd4r5FQ==}
+  partyserver@0.5.5:
+    resolution: {integrity: sha512-7zub8oV8Od9dY2aXGrgzhX5GLceaWOg7xB5VWXtDcqt2BWVDIOCAgaF0AmBMSu3AXhJHsFdzPnA8SSZdybXMbQ==}
     peerDependencies:
       '@cloudflare/workers-types': ^4.20260424.1
 
@@ -3504,7 +3499,7 @@ snapshots:
 
   '@babel/generator@7.29.1':
     dependencies:
-      '@babel/parser': 7.29.2
+      '@babel/parser': 7.29.3
       '@babel/types': 7.29.0
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
@@ -3624,7 +3619,7 @@ snapshots:
   '@babel/template@7.28.6':
     dependencies:
       '@babel/code-frame': 7.29.0
-      '@babel/parser': 7.29.2
+      '@babel/parser': 7.29.3
       '@babel/types': 7.29.0
 
   '@babel/traverse@7.29.0':
@@ -3632,7 +3627,7 @@ snapshots:
       '@babel/code-frame': 7.29.0
       '@babel/generator': 7.29.1
       '@babel/helper-globals': 7.28.0
-      '@babel/parser': 7.29.2
+      '@babel/parser': 7.29.3
       '@babel/template': 7.28.6
       '@babel/types': 7.29.0
       debug: 4.4.3
@@ -4682,7 +4677,7 @@ snapshots:
 
   acorn@8.16.0: {}
 
-  agents@0.11.6(@babel/core@7.29.0)(@babel/runtime@7.29.2)(@cloudflare/workers-types@4.20260426.1)(ai@6.0.168(zod@4.4.3))(rolldown@1.0.0-rc.17)(vite@8.0.10(@types/node@22.19.17)(esbuild@0.27.7)(tsx@4.21.0)(yaml@2.8.3))(zod@4.4.3):
+  agents@0.12.3(@babel/core@7.29.0)(@babel/runtime@7.29.2)(@cloudflare/workers-types@4.20260426.1)(ai@6.0.168(zod@4.4.3))(rolldown@1.0.0-rc.17)(vite@8.0.10(@types/node@22.19.17)(esbuild@0.27.7)(tsx@4.21.0)(yaml@2.8.3))(zod@4.4.3):
     dependencies:
       '@babel/plugin-proposal-decorators': 7.29.0(@babel/core@7.29.0)
       '@cfworker/json-schema': 4.1.1
@@ -4691,8 +4686,8 @@ snapshots:
       ai: 6.0.168(zod@4.4.3)
       cron-schedule: 6.0.0
       mimetext: 3.0.28
-      nanoid: 5.1.9
-      partyserver: 0.5.4(@cloudflare/workers-types@4.20260426.1)
+      nanoid: 5.1.11
+      partyserver: 0.5.5(@cloudflare/workers-types@4.20260426.1)
       partysocket: 1.1.18
       yargs: 18.0.0
       zod: 4.4.3
@@ -5633,11 +5628,9 @@ snapshots:
 
   ms@2.1.3: {}
 
-  nanoid@3.3.11: {}
-
   nanoid@3.3.12: {}
 
-  nanoid@5.1.9: {}
+  nanoid@5.1.11: {}
 
   negotiator@1.0.0: {}
 
@@ -5727,10 +5720,10 @@ snapshots:
 
   parseurl@1.3.3: {}
 
-  partyserver@0.5.4(@cloudflare/workers-types@4.20260426.1):
+  partyserver@0.5.5(@cloudflare/workers-types@4.20260426.1):
     dependencies:
       '@cloudflare/workers-types': 4.20260426.1
-      nanoid: 5.1.9
+      nanoid: 5.1.11
 
   partysocket@1.1.18:
     dependencies:
@@ -5760,7 +5753,7 @@ snapshots:
 
   postcss@8.5.12:
     dependencies:
-      nanoid: 3.3.11
+      nanoid: 3.3.12
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
