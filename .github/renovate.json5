@@ -29,25 +29,37 @@
       schedule: ["* 0-12 * * 6"],
     },
     {
+      description: "Update pnpm every Saturday morning",
+      matchDepTypes: ["packageManager"],
+      matchPackageNames: ["pnpm"],
+      // Cron: Every Saturday in the morning (minute hour day month weekday)
+      schedule: ["* 0-12 * * 6"],
+    },
+    {
       description: "Update GitHub Actions workflows on 3rd Monday of the month",
       matchFileNames: [".github/workflows/**"],
       // Cron: Every Monday during days 15-21 (contains 3rd Monday)
       schedule: ["* * 15-21 * 1"],
     },
+
     {
-      description: "Auto-merge non-major pnpm updates",
+      description: "Auto-merge pnpm updates",
       matchPackageNames: ["pnpm"],
       matchUpdateTypes: ["minor", "patch", "digest"],
       automerge: true,
       automergeType: "pr",
     },
     {
-      description: "Group and auto-merge non-major devDependencies; majors stay one PR per package",
+      description: "Auto-merge devDependencies",
+      matchDepTypes: ["devDependencies"],
+      automerge: true,
+      automergeType: "pr",
+    },
+    {
+      description: "Group non-major devDependencies; majors stay one PR per package",
       matchDepTypes: ["devDependencies"],
       matchUpdateTypes: ["minor", "patch", "digest"],
       groupName: "dev dependencies",
-      automerge: true,
-      automergeType: "pr",
     },
   ],
 }
