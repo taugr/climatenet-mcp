@@ -15,6 +15,9 @@ hero:
     - theme: alt
       text: Tool Reference
       link: /guide/tools
+    - theme: brand
+      text: Live Map
+      link: /air-quality-map
 
 features:
   - icon: "🌐"

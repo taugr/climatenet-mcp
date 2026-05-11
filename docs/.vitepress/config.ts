@@ -82,6 +82,7 @@ export default defineConfig({
       provider: "local",
     },
     nav: [
+      { text: "Live Map", link: "/air-quality-map" },
       {
         text: "Guide",
         items: [
