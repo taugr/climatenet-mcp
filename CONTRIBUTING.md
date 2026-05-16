@@ -12,7 +12,7 @@ Requirements:
 Clone the repo and install dependencies:
 
 ```bash
-git clone https://github.com/tom-auger/climatenet-mcp.git
+git clone https://github.com/taugr/climatenet-mcp.git
 cd climatenet-mcp
 pnpm install
 ```
@@ -75,4 +75,4 @@ pnpm run test
 
 ## Questions
 
-Open an issue at [github.com/tom-auger/climatenet-mcp/issues](https://github.com/tom-auger/climatenet-mcp/issues).
+Open an issue at [github.com/taugr/climatenet-mcp/issues](https://github.com/taugr/climatenet-mcp/issues).

@@ -11,15 +11,15 @@
     "mcp",
     "model-context-protocol"
   ],
-  "homepage": "https://github.com/tom-auger/climatenet-mcp#readme",
+  "homepage": "https://github.com/taugr/climatenet-mcp#readme",
   "bugs": {
-    "url": "https://github.com/tom-auger/climatenet-mcp/issues"
+    "url": "https://github.com/taugr/climatenet-mcp/issues"
   },
   "license": "MIT",
   "author": "Tom Auger <tom@tau.gr>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tom-auger/climatenet-mcp.git"
+    "url": "git+https://github.com/taugr/climatenet-mcp.git"
   },
   "type": "module",
   "scripts": {

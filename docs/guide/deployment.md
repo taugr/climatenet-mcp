@@ -80,7 +80,7 @@ The Worker config lives in `wrangler.jsonc` and uses the Cloudflare `agents/mcp`
 The documentation site is configured for GitHub Pages at:
 
 ```text
-https://tom-auger.github.io/climatenet-mcp/
+https://taugr.github.io/climatenet-mcp/
 ```
 
 The VitePress base path is:

@@ -7,7 +7,7 @@
     <img src="https://img.shields.io/badge/MCP-Streamable%20HTTP-2e8b57" alt="MCP endpoint" />
   </a>
   <a href="./LICENSE">
-    <img src="https://img.shields.io/github/license/tom-auger/climatenet-mcp" alt="license" />
+    <img src="https://img.shields.io/github/license/taugr/climatenet-mcp" alt="license" />
   </a>
   <br />
   MCP server for querying ClimateNet environmental monitoring data from Armenia through Codex, Claude, and other MCP clients.
@@ -113,7 +113,7 @@ For Claude Code and Cowork users, this repo also ships as a plugin that bundles 
 ### Claude Code (via marketplace)
 
 ```bash
-/plugin marketplace add tom-auger/climatenet-mcp
+/plugin marketplace add taugr/climatenet-mcp
 /plugin install climatenet@climatenet-mcp
 ```
 
@@ -128,7 +128,7 @@ Or, from a local clone:
 
 Cowork lives inside the Claude Desktop app under the **Cowork** tab.
 
-1. Download `climatenet.plugin` from the [latest release](https://github.com/tom-auger/climatenet-mcp/releases/latest)
+1. Download `climatenet.plugin` from the [latest release](https://github.com/taugr/climatenet-mcp/releases/latest)
 2. Open Claude Desktop and switch to the **Cowork** tab
 3. In the left sidebar, click **Customize**
 4. Click **Browse plugins**, then choose **upload a custom plugin file**

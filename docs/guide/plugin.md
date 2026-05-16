@@ -16,7 +16,7 @@ The plugin is read-only and requires no API key.
 Install from the public marketplace:
 
 ```sh
-/plugin marketplace add tom-auger/climatenet-mcp
+/plugin marketplace add taugr/climatenet-mcp
 /plugin install climatenet@climatenet-mcp
 ```
 
@@ -33,7 +33,7 @@ Verify with `/plugin list` and `/mcp`.
 
 Cowork lives inside the Claude Desktop app under the **Cowork** tab.
 
-1. Download `climatenet.plugin` from the [latest release](https://github.com/tom-auger/climatenet-mcp/releases/latest)
+1. Download `climatenet.plugin` from the [latest release](https://github.com/taugr/climatenet-mcp/releases/latest)
 2. Open Claude Desktop and switch to the **Cowork** tab
 3. In the left sidebar, click **Customize**
 4. Click **Browse plugins**, then choose **upload a custom plugin file**

@@ -56,6 +56,6 @@ MCP_ENDPOINT=http://localhost:3030/mcp pnpm smoke
 
 ## Նախագծի փաստաթղթեր
 
-- [Contributing](https://github.com/tom-auger/climatenet-mcp/blob/main/CONTRIBUTING.md)
-- [Security](https://github.com/tom-auger/climatenet-mcp/blob/main/SECURITY.md)
-- [License](https://github.com/tom-auger/climatenet-mcp/blob/main/LICENSE)
+- [Contributing](https://github.com/taugr/climatenet-mcp/blob/main/CONTRIBUTING.md)
+- [Security](https://github.com/taugr/climatenet-mcp/blob/main/SECURITY.md)
+- [License](https://github.com/taugr/climatenet-mcp/blob/main/LICENSE)

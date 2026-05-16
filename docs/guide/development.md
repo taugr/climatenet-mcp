@@ -56,6 +56,6 @@ This repo uses Husky and lint-staged. The pre-commit hook runs `oxfmt` on staged
 
 ## Project Documents
 
-- [Contributing](https://github.com/tom-auger/climatenet-mcp/blob/main/CONTRIBUTING.md)
-- [Security](https://github.com/tom-auger/climatenet-mcp/blob/main/SECURITY.md)
-- [License](https://github.com/tom-auger/climatenet-mcp/blob/main/LICENSE)
+- [Contributing](https://github.com/taugr/climatenet-mcp/blob/main/CONTRIBUTING.md)
+- [Security](https://github.com/taugr/climatenet-mcp/blob/main/SECURITY.md)
+- [License](https://github.com/taugr/climatenet-mcp/blob/main/LICENSE)
