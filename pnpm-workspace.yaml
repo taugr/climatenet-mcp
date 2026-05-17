@@ -5,5 +5,5 @@ allowBuilds:
   workerd: true
 peerDependencyRules:
   allowedVersions:
-    react: "19"
+    react: '19'
 enableGlobalVirtualStore: true

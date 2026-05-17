@@ -1,7 +1,7 @@
-import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import express from "express";
-import { corsHeaders } from "./cors.js";
-import { createClimateNetMcpServer, createServer } from "./mcp.js";
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import express from 'express';
+import { corsHeaders } from './cors.js';
+import { createClimateNetMcpServer, createServer } from './mcp.js';
 
 export { createClimateNetMcpServer, createServer };
 
@@ -12,27 +12,30 @@ app.use((_req, res, next) => {
   });
   next();
 });
-app.use(express.json({ limit: "2mb" }));
+app.use(express.json({ limit: '2mb' }));
 
 app.options(/.*/, (_req, res) => {
   res.status(204).end();
 });
 
-app.get("/health", (_req, res) => {
-  res.json({ ok: true, name: "climatenet-mcp" });
+app.get('/health', (_req, res) => {
+  res.json({ ok: true, name: 'climatenet-mcp' });
 });
 
-app.post("/mcp", (req, res) => {
+app.post('/mcp', (req, res) => {
   void handleMcpRequest(req, res);
 });
 
-export async function handleMcpRequest(req: express.Request, res: express.Response): Promise<void> {
+export async function handleMcpRequest(
+  req: express.Request,
+  res: express.Response,
+): Promise<void> {
   const server = createClimateNetMcpServer();
   const transport = new StreamableHTTPServerTransport({
     sessionIdGenerator: undefined,
   });
 
-  res.on("close", () => {
+  res.on('close', () => {
     void transport.close();
   });
 
@@ -42,10 +45,11 @@ export async function handleMcpRequest(req: express.Request, res: express.Respon
   } catch (error) {
     if (!res.headersSent) {
       res.status(500).json({
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         error: {
           code: -32603,
-          message: error instanceof Error ? error.message : "Internal server error",
+          message:
+            error instanceof Error ? error.message : 'Internal server error',
         },
         id: req.body?.id ?? null,
       });
@@ -55,8 +59,10 @@ export async function handleMcpRequest(req: express.Request, res: express.Respon
 
 const port = Number(process.env.PORT ?? 3000);
 
-if (process.env.NODE_ENV !== "test") {
+if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => {
-    console.log(`ClimateNet MCP server listening on http://localhost:${port}/mcp`);
+    console.log(
+      `ClimateNet MCP server listening on http://localhost:${port}/mcp`,
+    );
   });
 }

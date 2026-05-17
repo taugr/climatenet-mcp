@@ -1,45 +1,45 @@
-import { FALLBACK_DEVICES } from "./fallback-devices.js";
+import { FALLBACK_DEVICES } from './fallback-devices.js';
 
-export const CLIMATENET_BASE_URL = "https://climatenet.am";
+export const CLIMATENET_BASE_URL = 'https://climatenet.am';
 export const CLIMATENET_PUBLIC_API_URL =
-  "https://emvnh9buoh.execute-api.us-east-1.amazonaws.com/getData";
+  'https://emvnh9buoh.execute-api.us-east-1.amazonaws.com/getData';
 
 const METRICS = [
-  "uv",
-  "lux",
-  "temperature",
-  "pressure",
-  "humidity",
-  "pm1",
-  "pm2_5",
-  "pm10",
-  "speed",
-  "rain",
+  'uv',
+  'lux',
+  'temperature',
+  'pressure',
+  'humidity',
+  'pm1',
+  'pm2_5',
+  'pm10',
+  'speed',
+  'rain',
 ] as const;
 
 const PUBLIC_API_KEY_MAP = {
-  id: "id",
-  timestamp: "timestamp",
-  uv: "uv",
-  lux: "lux",
-  temperature: "temperature",
-  pressure: "pressure",
-  humidity: "humidity",
-  pm1: "pm1",
-  pm2_5: "pm2_5",
-  pm10: "pm10",
-  "wind speed": "speed",
-  rain: "rain",
-  "wind direction": "direction",
+  id: 'id',
+  timestamp: 'timestamp',
+  uv: 'uv',
+  lux: 'lux',
+  temperature: 'temperature',
+  pressure: 'pressure',
+  humidity: 'humidity',
+  pm1: 'pm1',
+  pm2_5: 'pm2_5',
+  pm10: 'pm10',
+  'wind speed': 'speed',
+  rain: 'rain',
+  'wind direction': 'direction',
 } as const;
 
 let deviceListCache: Device[] | null = null;
 
 export type Metric = (typeof METRICS)[number];
 
-export type SensorName = "LTR390" | "BME280" | "PMS5003" | "Wind" | "Rainfall";
-export type SensorStatus = "valid" | "invalid" | "nodata";
-export type DeviceStatus = "online" | "offline";
+export type SensorName = 'LTR390' | 'BME280' | 'PMS5003' | 'Wind' | 'Rainfall';
+export type SensorStatus = 'valid' | 'invalid' | 'nodata';
+export type DeviceStatus = 'online' | 'offline';
 
 export interface DeviceIssue {
   id: number;
@@ -127,7 +127,9 @@ export function supportedMetrics(): Metric[] {
   return [...METRICS];
 }
 
-export async function listDevices(filters: ListDevicesFilters = {}): Promise<Device[]> {
+export async function listDevices(
+  filters: ListDevicesFilters = {},
+): Promise<Device[]> {
   const devices = await getDeviceList();
 
   return devices.filter((device) => {
@@ -142,15 +144,16 @@ export async function listDevices(filters: ListDevicesFilters = {}): Promise<Dev
 
     if (filters.status && device.Status !== filters.status) return false;
 
-    if (typeof filters.hasIssues === "boolean") {
+    if (typeof filters.hasIssues === 'boolean') {
       const hasIssues = device.issues.length > 0;
       if (hasIssues !== filters.hasIssues) return false;
     }
 
     if (filters.sensor) {
       const sensorValue = device[filters.sensor];
-      if (filters.sensorStatus && sensorValue !== filters.sensorStatus) return false;
-      if (!filters.sensorStatus && sensorValue !== "valid") return false;
+      if (filters.sensorStatus && sensorValue !== filters.sensorStatus)
+        return false;
+      if (!filters.sensorStatus && sensorValue !== 'valid') return false;
     }
 
     return true;
@@ -159,12 +162,16 @@ export async function listDevices(filters: ListDevicesFilters = {}): Promise<Dev
 
 export async function getDevice(deviceId: number): Promise<Device> {
   const devices = await getDeviceList();
-  const device = devices.find((candidate) => candidate.generated_id === deviceId);
+  const device = devices.find(
+    (candidate) => candidate.generated_id === deviceId,
+  );
   if (!device) throw new Error(`Device ${deviceId} was not found`);
   return device;
 }
 
-export async function getLatestReading(deviceId: number): Promise<LatestReading | null> {
+export async function getLatestReading(
+  deviceId: number,
+): Promise<LatestReading | null> {
   await ensureDeviceExists(deviceId);
   const readings = await getDeviceReadings({ deviceId });
   return readings.at(-1) ?? null;
@@ -179,13 +186,15 @@ export async function getDeviceReadings(params: {
   await ensureDeviceExists(params.deviceId);
 
   const url = new URL(CLIMATENET_PUBLIC_API_URL);
-  url.searchParams.set("device_id", String(params.deviceId));
+  url.searchParams.set('device_id', String(params.deviceId));
   if (params.startDate && params.endDate) {
-    url.searchParams.set("start_time", params.startDate);
-    url.searchParams.set("end_time", params.endDate);
+    url.searchParams.set('start_time', params.startDate);
+    url.searchParams.set('end_time', params.endDate);
   }
 
-  const response = await fetchJson<{ keys: string[]; data: unknown[][] }>(url.toString());
+  const response = await fetchJson<{ keys: string[]; data: unknown[][] }>(
+    url.toString(),
+  );
   return response.data.map((row) => normalizePublicApiRow(response.keys, row));
 }
 
@@ -195,8 +204,8 @@ export async function getDeviceGraph(params: {
   endDate: string;
   metric?: Metric;
 }): Promise<GraphReading[] | Array<{ time: string; value: number | null }>> {
-  validateDate(params.startDate, "start_date");
-  validateDate(params.endDate, "end_date");
+  validateDate(params.startDate, 'start_date');
+  validateDate(params.endDate, 'end_date');
   const publicReadings = await getDeviceReadings({
     deviceId: params.deviceId,
     startDate: params.startDate,
@@ -219,13 +228,17 @@ export async function compareDevices(params: {
   endDate: string;
   metric: Metric;
 }): Promise<CompareSeries[]> {
-  validateDate(params.startDate, "start_date");
-  validateDate(params.endDate, "end_date");
-  if (params.deviceIds.length === 0) throw new Error("At least one device_id is required");
-  if (params.deviceIds.length > 10) throw new Error("Compare at most 10 devices at a time");
+  validateDate(params.startDate, 'start_date');
+  validateDate(params.endDate, 'end_date');
+  if (params.deviceIds.length === 0)
+    throw new Error('At least one device_id is required');
+  if (params.deviceIds.length > 10)
+    throw new Error('Compare at most 10 devices at a time');
 
   const devices = await listDevices();
-  const byGeneratedId = new Map(devices.map((device) => [device.generated_id, device]));
+  const byGeneratedId = new Map(
+    devices.map((device) => [device.generated_id, device]),
+  );
 
   return Promise.all(
     params.deviceIds.map(async (deviceId) => {
@@ -259,7 +272,7 @@ async function getDeviceList(): Promise<Device[]> {
   if (deviceListCache) return deviceListCache;
 
   try {
-    deviceListCache = await requestJson<Device[]>("/device_inner/list/");
+    deviceListCache = await requestJson<Device[]>('/device_inner/list/');
     return deviceListCache;
   } catch {
     deviceListCache = FALLBACK_DEVICES;
@@ -274,13 +287,15 @@ async function requestJson<T>(path: string): Promise<T> {
 async function fetchJson<T>(url: string): Promise<T> {
   const signal = AbortSignal.timeout(8_000);
   const response = await fetch(url, {
-    headers: { accept: "application/json" },
+    headers: { accept: 'application/json' },
     signal,
   });
 
   if (!response.ok) {
     const body = await response.text();
-    throw new Error(`ClimateNet request failed: ${response.status} ${response.statusText} ${body}`);
+    throw new Error(
+      `ClimateNet request failed: ${response.status} ${response.statusText} ${body}`,
+    );
   }
 
   return (await response.json()) as T;
@@ -288,7 +303,7 @@ async function fetchJson<T>(url: string): Promise<T> {
 
 function publicReadingToGraphReading(reading: PublicApiReading): GraphReading {
   return {
-    time_interval: reading.timestamp.replace(" ", "T"),
+    time_interval: reading.timestamp.replace(' ', 'T'),
     uv: reading.uv,
     lux: reading.lux,
     temperature: reading.temperature,
@@ -302,11 +317,15 @@ function publicReadingToGraphReading(reading: PublicApiReading): GraphReading {
   };
 }
 
-function normalizePublicApiRow(keys: string[], row: unknown[]): PublicApiReading {
+function normalizePublicApiRow(
+  keys: string[],
+  row: unknown[],
+): PublicApiReading {
   const normalized: Record<string, unknown> = {};
 
   keys.forEach((key, index) => {
-    const mappedKey = PUBLIC_API_KEY_MAP[key as keyof typeof PUBLIC_API_KEY_MAP] ?? key;
+    const mappedKey =
+      PUBLIC_API_KEY_MAP[key as keyof typeof PUBLIC_API_KEY_MAP] ?? key;
     normalized[mappedKey] = row[index];
   });
 
@@ -324,23 +343,24 @@ function normalizePublicApiRow(keys: string[], row: unknown[]): PublicApiReading
     pm10: nullableNumber(normalized.pm10),
     speed: nullableNumber(normalized.speed),
     rain: nullableNumber(normalized.rain),
-    direction: typeof normalized.direction === "string" ? normalized.direction : null,
+    direction:
+      typeof normalized.direction === 'string' ? normalized.direction : null,
   };
 }
 
 function nullableNumber(value: unknown): number | null {
-  if (value === null || typeof value === "undefined") return null;
+  if (value === null || typeof value === 'undefined') return null;
   const numberValue = Number(value);
   return Number.isFinite(numberValue) ? numberValue : null;
 }
 
 function validateDatePair(startDate?: string, endDate?: string): void {
   if ((startDate && !endDate) || (!startDate && endDate)) {
-    throw new Error("start_date and end_date must be supplied together");
+    throw new Error('start_date and end_date must be supplied together');
   }
 
-  if (startDate) validateDate(startDate, "start_date");
-  if (endDate) validateDate(endDate, "end_date");
+  if (startDate) validateDate(startDate, 'start_date');
+  if (endDate) validateDate(endDate, 'end_date');
 }
 
 function validateDate(date: string, fieldName: string): void {
@@ -349,7 +369,10 @@ function validateDate(date: string, fieldName: string): void {
   }
 
   const parsed = new Date(`${date}T00:00:00Z`);
-  if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== date) {
+  if (
+    Number.isNaN(parsed.getTime()) ||
+    parsed.toISOString().slice(0, 10) !== date
+  ) {
     throw new Error(`${fieldName} must be a valid calendar date`);
   }
 }

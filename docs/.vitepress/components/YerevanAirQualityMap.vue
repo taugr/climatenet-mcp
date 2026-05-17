@@ -1,13 +1,21 @@
 <script setup lang="ts">
-import "leaflet/dist/leaflet.css";
-import { computed, nextTick, onMounted, onUnmounted, ref, shallowRef } from "vue";
-import type * as Leaflet from "leaflet";
-import { useData } from "vitepress";
+import 'leaflet/dist/leaflet.css';
+import {
+  computed,
+  nextTick,
+  onMounted,
+  onUnmounted,
+  ref,
+  shallowRef,
+} from 'vue';
+import type * as Leaflet from 'leaflet';
+import { useData } from 'vitepress';
 
-const DEVICE_LIST_URL = "https://climatenet.am/device_inner/list/";
-const READINGS_URL = "https://emvnh9buoh.execute-api.us-east-1.amazonaws.com/getData";
+const DEVICE_LIST_URL = 'https://climatenet.am/device_inner/list/';
+const READINGS_URL =
+  'https://emvnh9buoh.execute-api.us-east-1.amazonaws.com/getData';
 const ARMENIA_CENTER: Leaflet.LatLngExpression = [40.0691, 45.0382];
-const ALL_REGIONS = "All regions";
+const ALL_REGIONS = 'All regions';
 
 const { lang } = useData();
 
@@ -20,8 +28,8 @@ interface ClimateNetDevice {
   parent_name_hy: string;
   latitude: string;
   longitude: string;
-  PMS5003: "valid" | "invalid" | "nodata";
-  Status: "online" | "offline";
+  PMS5003: 'valid' | 'invalid' | 'nodata';
+  Status: 'online' | 'offline';
   last_updated: string;
 }
 
@@ -48,50 +56,58 @@ interface RegionOption {
 }
 
 const labels = computed(() => {
-  const isArmenian = lang.value === "hy-AM";
+  const isArmenian = lang.value === 'hy-AM';
 
   return {
-    allRegions: isArmenian ? "Բոլոր մարզերը" : "All regions",
-    armenia: isArmenian ? "Հայաստան" : "Armenia",
+    allRegions: isArmenian ? 'Բոլոր մարզերը' : 'All regions',
+    armenia: isArmenian ? 'Հայաստան' : 'Armenia',
     couldNotLoadData: isArmenian
-      ? "Չհաջողվեց բեռնել ClimateNet-ի օդի որակի տվյալները։"
-      : "Could not load ClimateNet air quality data.",
-    device: isArmenian ? "սարք" : "device",
+      ? 'Չհաջողվեց բեռնել ClimateNet-ի օդի որակի տվյալները։'
+      : 'Could not load ClimateNet air quality data.',
+    device: isArmenian ? 'սարք' : 'device',
     failedReadings: isArmenian
-      ? "չհաջողվեց բեռնել ընթացիկ չափումները։"
-      : "could not load current readings.",
-    elevated: isArmenian ? "Բարձրացող" : "Elevated",
+      ? 'չհաջողվեց բեռնել ընթացիկ չափումները։'
+      : 'could not load current readings.',
+    elevated: isArmenian ? 'Բարձրացող' : 'Elevated',
     findingStations: isArmenian
-      ? "Փնտրվում են ClimateNet կայանները..."
-      : "Finding ClimateNet stations...",
-    high: isArmenian ? "Բարձր" : "High",
-    latestReading: isArmenian ? "Վերջին չափումը" : "Latest reading",
-    liveReadings: isArmenian ? "Կենդանի մասնիկային չափումներ" : "Live particulate readings",
-    loaded: isArmenian ? "Բեռնվել է" : "Loaded",
-    loading: isArmenian ? "Բեռնվում է" : "Loading",
-    loadingReadings: isArmenian ? "Բեռնվում են չափումները" : "Loading readings",
-    low: isArmenian ? "Ցածր" : "Low",
-    mapAriaPrefix: isArmenian ? "ClimateNet-ի օդի որակի կայանների քարտեզ" : "Map of",
-    mapAriaSuffix: isArmenian ? "" : "ClimateNet air quality stations",
-    moderate: isArmenian ? "Միջին" : "Moderate",
-    noCurrentReading: isArmenian ? "Ընթացիկ չափում չկա" : "No current reading",
-    noData: isArmenian ? "Տվյալներ չկան" : "No data",
-    noPm25Data: isArmenian ? "PM2.5 տվյալներ չկան" : "No PM2.5 data",
-    noStations: isArmenian ? "կայաններ հիմա հասանելի չեն։" : "stations are available right now.",
-    of: isArmenian ? "/" : "of",
-    particulateStatus: isArmenian ? "մասնիկային կարգավիճակ" : "particulate status",
-    preparingMap: isArmenian ? "Քարտեզը պատրաստվում է" : "Preparing map",
-    refresh: isArmenian ? "Թարմացնել" : "Refresh",
-    region: isArmenian ? "Մարզ" : "Region",
-    station: isArmenian ? "կայան" : "station",
-    stations: isArmenian ? "կայան" : "stations",
-    title: isArmenian ? "ClimateNet-ի օդի որակ" : "ClimateNet air quality",
-    unknown: isArmenian ? "Անհայտ" : "Unknown",
-    valid: isArmenian ? "վավեր" : "valid",
-    invalid: isArmenian ? "անվավեր" : "invalid",
-    nodata: isArmenian ? "տվյալներ չկան" : "nodata",
-    online: isArmenian ? "առցանց" : "online",
-    offline: isArmenian ? "անցանց" : "offline",
+      ? 'Փնտրվում են ClimateNet կայանները...'
+      : 'Finding ClimateNet stations...',
+    high: isArmenian ? 'Բարձր' : 'High',
+    latestReading: isArmenian ? 'Վերջին չափումը' : 'Latest reading',
+    liveReadings: isArmenian
+      ? 'Կենդանի մասնիկային չափումներ'
+      : 'Live particulate readings',
+    loaded: isArmenian ? 'Բեռնվել է' : 'Loaded',
+    loading: isArmenian ? 'Բեռնվում է' : 'Loading',
+    loadingReadings: isArmenian ? 'Բեռնվում են չափումները' : 'Loading readings',
+    low: isArmenian ? 'Ցածր' : 'Low',
+    mapAriaPrefix: isArmenian
+      ? 'ClimateNet-ի օդի որակի կայանների քարտեզ'
+      : 'Map of',
+    mapAriaSuffix: isArmenian ? '' : 'ClimateNet air quality stations',
+    moderate: isArmenian ? 'Միջին' : 'Moderate',
+    noCurrentReading: isArmenian ? 'Ընթացիկ չափում չկա' : 'No current reading',
+    noData: isArmenian ? 'Տվյալներ չկան' : 'No data',
+    noPm25Data: isArmenian ? 'PM2.5 տվյալներ չկան' : 'No PM2.5 data',
+    noStations: isArmenian
+      ? 'կայաններ հիմա հասանելի չեն։'
+      : 'stations are available right now.',
+    of: isArmenian ? '/' : 'of',
+    particulateStatus: isArmenian
+      ? 'մասնիկային կարգավիճակ'
+      : 'particulate status',
+    preparingMap: isArmenian ? 'Քարտեզը պատրաստվում է' : 'Preparing map',
+    refresh: isArmenian ? 'Թարմացնել' : 'Refresh',
+    region: isArmenian ? 'Մարզ' : 'Region',
+    station: isArmenian ? 'կայան' : 'station',
+    stations: isArmenian ? 'կայան' : 'stations',
+    title: isArmenian ? 'ClimateNet-ի օդի որակ' : 'ClimateNet air quality',
+    unknown: isArmenian ? 'Անհայտ' : 'Unknown',
+    valid: isArmenian ? 'վավեր' : 'valid',
+    invalid: isArmenian ? 'անվավեր' : 'invalid',
+    nodata: isArmenian ? 'տվյալներ չկան' : 'nodata',
+    online: isArmenian ? 'առցանց' : 'online',
+    offline: isArmenian ? 'անցանց' : 'offline',
   };
 });
 
@@ -108,13 +124,18 @@ const loadedAt = ref<Date | null>(null);
 const leaflet = shallowRef<typeof Leaflet | null>(null);
 
 const regionOptions = computed<RegionOption[]>(() => {
-  const regionValues = new Set(stations.value.map((station) => regionValue(station.device)));
+  const regionValues = new Set(
+    stations.value.map((station) => regionValue(station.device)),
+  );
 
   return [
     { label: labels.value.allRegions, value: ALL_REGIONS },
     ...[...regionValues]
       .sort((left, right) =>
-        regionLabelForValue(left).localeCompare(regionLabelForValue(right), lang.value),
+        regionLabelForValue(left).localeCompare(
+          regionLabelForValue(right),
+          lang.value,
+        ),
       )
       .map((value) => ({
         label: regionLabelForValue(value),
@@ -124,7 +145,9 @@ const regionOptions = computed<RegionOption[]>(() => {
 });
 const visibleStations = computed(() => {
   if (selectedRegion.value === ALL_REGIONS) return stations.value;
-  return stations.value.filter((station) => regionValue(station.device) === selectedRegion.value);
+  return stations.value.filter(
+    (station) => regionValue(station.device) === selectedRegion.value,
+  );
 });
 const stationCount = computed(() => visibleStations.value.length);
 const selectedRegionLabel = computed(() =>
@@ -145,7 +168,7 @@ const latestTimestamp = computed(() => {
 });
 
 onMounted(async () => {
-  leaflet.value = await import("leaflet");
+  leaflet.value = await import('leaflet');
   await nextTick();
   initializeMap();
   await loadStations();
@@ -182,24 +205,33 @@ async function loadStations(): Promise<void> {
 
     stations.value = results
       .filter(
-        (result): result is PromiseFulfilledResult<StationReading> => result.status === "fulfilled",
+        (result): result is PromiseFulfilledResult<StationReading> =>
+          result.status === 'fulfilled',
       )
       .map((result) => result.value);
 
     const failedCount = results.length - stations.value.length;
     if (failedCount > 0) {
-      const stationLabel = failedCount === 1 ? labels.value.station : labels.value.stations;
+      const stationLabel =
+        failedCount === 1 ? labels.value.station : labels.value.stations;
       error.value = `${failedCount} ${stationLabel} ${labels.value.failedReadings}`;
     }
 
-    if (!regionOptions.value.some((option) => option.value === selectedRegion.value)) {
+    if (
+      !regionOptions.value.some(
+        (option) => option.value === selectedRegion.value,
+      )
+    ) {
       selectedRegion.value = ALL_REGIONS;
     }
 
     loadedAt.value = new Date();
     renderStations();
   } catch (loadError) {
-    error.value = loadError instanceof Error ? loadError.message : labels.value.couldNotLoadData;
+    error.value =
+      loadError instanceof Error
+        ? loadError.message
+        : labels.value.couldNotLoadData;
     stations.value = [];
     renderStations();
   } finally {
@@ -209,36 +241,44 @@ async function loadStations(): Promise<void> {
 
 async function fetchDevices(): Promise<ClimateNetDevice[]> {
   const response = await fetch(DEVICE_LIST_URL, {
-    headers: { accept: "application/json" },
+    headers: { accept: 'application/json' },
   });
 
   if (!response.ok) {
-    throw new Error(`ClimateNet devices request failed with ${response.status}.`);
+    throw new Error(
+      `ClimateNet devices request failed with ${response.status}.`,
+    );
   }
 
   return (await response.json()) as ClimateNetDevice[];
 }
 
-async function fetchLatestReading(deviceId: number): Promise<LatestReading | null> {
+async function fetchLatestReading(
+  deviceId: number,
+): Promise<LatestReading | null> {
   const url = new URL(READINGS_URL);
-  url.searchParams.set("device_id", String(deviceId));
+  url.searchParams.set('device_id', String(deviceId));
 
   const response = await fetch(url, {
-    headers: { accept: "application/json" },
+    headers: { accept: 'application/json' },
   });
 
   if (!response.ok) {
-    throw new Error(`ClimateNet readings request failed with ${response.status}.`);
+    throw new Error(
+      `ClimateNet readings request failed with ${response.status}.`,
+    );
   }
 
   const payload = (await response.json()) as PublicApiResponse;
   const row = payload.data.at(-1);
   if (!row) return null;
 
-  const record = Object.fromEntries(payload.keys.map((key, index) => [key, row[index]]));
+  const record = Object.fromEntries(
+    payload.keys.map((key, index) => [key, row[index]]),
+  );
 
   return {
-    timestamp: String(record.timestamp ?? ""),
+    timestamp: String(record.timestamp ?? ''),
     pm1: nullableNumber(record.pm1),
     pm2_5: nullableNumber(record.pm2_5),
     pm10: nullableNumber(record.pm10),
@@ -256,7 +296,7 @@ function initializeMap(): void {
   });
   nextMap.attributionControl.setPrefix(false);
 
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -289,7 +329,10 @@ function renderStations(): void {
   }
 
   if (visibleStations.value.length > 0) {
-    map.value.fitBounds(stationLayer.value.getBounds(), { padding: [36, 36], maxZoom: 14 });
+    map.value.fitBounds(stationLayer.value.getBounds(), {
+      padding: [36, 36],
+      maxZoom: 14,
+    });
   } else {
     map.value.setView(ARMENIA_CENTER, 8);
   }
@@ -304,9 +347,12 @@ function regionValue(device: ClimateNetDevice): string {
 }
 
 function regionLabel(device: ClimateNetDevice): string {
-  if (lang.value === "hy-AM") {
+  if (lang.value === 'hy-AM') {
     return (
-      device.parent_name_hy || device.parent_name || device.parent_name_en || labels.value.unknown
+      device.parent_name_hy ||
+      device.parent_name ||
+      device.parent_name_en ||
+      labels.value.unknown
     );
   }
 
@@ -314,31 +360,48 @@ function regionLabel(device: ClimateNetDevice): string {
 }
 
 function regionLabelForValue(value: string): string {
-  const station = stations.value.find((candidate) => regionValue(candidate.device) === value);
+  const station = stations.value.find(
+    (candidate) => regionValue(candidate.device) === value,
+  );
   return station ? regionLabel(station.device) : value;
 }
 
 function stationName(device: ClimateNetDevice): string {
-  if (lang.value === "hy-AM") return device.name || device.name_en;
+  if (lang.value === 'hy-AM') return device.name || device.name_en;
   return device.name_en || device.name;
 }
 
 function hasCoordinates(device: ClimateNetDevice): boolean {
-  return Number.isFinite(Number(device.latitude)) && Number.isFinite(Number(device.longitude));
+  return (
+    Number.isFinite(Number(device.latitude)) &&
+    Number.isFinite(Number(device.longitude))
+  );
 }
 
 function nullableNumber(value: unknown): number | null {
-  if (value === null || typeof value === "undefined") return null;
+  if (value === null || typeof value === 'undefined') return null;
   const numberValue = Number(value);
   return Number.isFinite(numberValue) ? numberValue : null;
 }
 
-function pm25Style(value: number | null): { fill: string; label: string; stroke: string } {
-  if (value === null) return { fill: "#737373", stroke: "#525252", label: labels.value.noPm25Data };
-  if (value <= 12) return { fill: "#2e8b57", stroke: "#166534", label: labels.value.low };
-  if (value <= 35.4) return { fill: "#d9a441", stroke: "#a16207", label: labels.value.moderate };
-  if (value <= 55.4) return { fill: "#d97706", stroke: "#9a3412", label: labels.value.elevated };
-  return { fill: "#c2410c", stroke: "#7c2d12", label: labels.value.high };
+function pm25Style(value: number | null): {
+  fill: string;
+  label: string;
+  stroke: string;
+} {
+  if (value === null)
+    return {
+      fill: '#737373',
+      stroke: '#525252',
+      label: labels.value.noPm25Data,
+    };
+  if (value <= 12)
+    return { fill: '#2e8b57', stroke: '#166534', label: labels.value.low };
+  if (value <= 35.4)
+    return { fill: '#d9a441', stroke: '#a16207', label: labels.value.moderate };
+  if (value <= 55.4)
+    return { fill: '#d97706', stroke: '#9a3412', label: labels.value.elevated };
+  return { fill: '#c2410c', stroke: '#7c2d12', label: labels.value.high };
 }
 
 function popupHtml(station: StationReading): string {
@@ -361,27 +424,27 @@ function popupHtml(station: StationReading): string {
   `;
 }
 
-function deviceStatusLabel(status: ClimateNetDevice["Status"]): string {
-  return status === "online" ? labels.value.online : labels.value.offline;
+function deviceStatusLabel(status: ClimateNetDevice['Status']): string {
+  return status === 'online' ? labels.value.online : labels.value.offline;
 }
 
-function sensorStatusLabel(status: ClimateNetDevice["PMS5003"]): string {
-  if (status === "valid") return labels.value.valid;
-  if (status === "invalid") return labels.value.invalid;
+function sensorStatusLabel(status: ClimateNetDevice['PMS5003']): string {
+  if (status === 'valid') return labels.value.valid;
+  if (status === 'invalid') return labels.value.invalid;
   return labels.value.nodata;
 }
 
 function formatLoadedTime(date: Date): string {
   return date.toLocaleTimeString(lang.value, {
-    hour: "2-digit",
+    hour: '2-digit',
     hour12: false,
-    minute: "2-digit",
-    second: "2-digit",
+    minute: '2-digit',
+    second: '2-digit',
   });
 }
 
 function formatPm(value: number | null | undefined): string {
-  return typeof value === "number"
+  return typeof value === 'number'
     ? `${value.toFixed(value % 1 === 0 ? 0 : 1)} ug/m3`
     : labels.value.noData;
 }
@@ -389,11 +452,11 @@ function formatPm(value: number | null | undefined): string {
 function escapeHtml(value: string): string {
   return value.replace(/[&<>"']/g, (character) => {
     const replacements: Record<string, string> = {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;",
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
     };
 
     return replacements[character] ?? character;
@@ -411,13 +474,26 @@ function escapeHtml(value: string): string {
       <div class="aq-controls">
         <label class="aq-region">
           <span>{{ labels.region }}</span>
-          <select v-model="selectedRegion" :disabled="loading" @change="handleRegionChange">
-            <option v-for="region in regionOptions" :key="region.value" :value="region.value">
+          <select
+            v-model="selectedRegion"
+            :disabled="loading"
+            @change="handleRegionChange"
+          >
+            <option
+              v-for="region in regionOptions"
+              :key="region.value"
+              :value="region.value"
+            >
               {{ region.label }}
             </option>
           </select>
         </label>
-        <button class="aq-refresh" type="button" :disabled="loading" @click="loadStations">
+        <button
+          class="aq-refresh"
+          type="button"
+          :disabled="loading"
+          @click="loadStations"
+        >
           {{ loading ? labels.loading : labels.refresh }}
         </button>
       </div>
@@ -428,8 +504,12 @@ function escapeHtml(value: string): string {
         {{ stationCount }} {{ selectedRegionLabel }}
         {{ stationCount === 1 ? labels.station : labels.stations }}
       </span>
-      <span v-if="latestTimestamp">{{ labels.latestReading }} {{ latestTimestamp }}</span>
-      <span v-if="loadedAt">{{ labels.loaded }} {{ formatLoadedTime(loadedAt) }}</span>
+      <span v-if="latestTimestamp"
+        >{{ labels.latestReading }} {{ latestTimestamp }}</span
+      >
+      <span v-if="loadedAt"
+        >{{ labels.loaded }} {{ formatLoadedTime(loadedAt) }}</span
+      >
     </div>
 
     <p v-if="error" class="aq-error">{{ error }}</p>

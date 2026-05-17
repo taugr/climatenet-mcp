@@ -7,7 +7,7 @@ description: >
   Also triggers on queries like "what's the PM2.5 in Yerevan", "which ClimateNet sensors are
   offline", or "show me graph data for a device".
 metadata:
-  version: "0.1.0"
+  version: '0.1.0'
 ---
 
 # ClimateNet Query
