@@ -45,6 +45,8 @@
       matchFileNames: ['.github/workflows/**'],
       // Cron: Every Monday during days 15-21 (contains 3rd Monday)
       schedule: ['* * 15-21 * 1'],
+      automerge: true,
+      automergeType: 'pr',
     },
 
     {
