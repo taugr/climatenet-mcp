@@ -12,8 +12,8 @@ importers:
         specifier: ^1.29.0
         version: 1.29.0(@cfworker/json-schema@4.1.1)(zod@4.4.3)
       agents:
-        specifier: ^0.12.3
-        version: 0.12.4(@babel/core@7.29.0)(@babel/runtime@7.29.2)(@cloudflare/workers-types@4.20260515.1)(ai@6.0.168(zod@4.4.3))(react@19.2.6)(rolldown@1.0.0-rc.17)(vite@8.0.10(@types/node@25.8.0)(esbuild@0.28.0)(tsx@4.22.0)(yaml@2.9.0))(zod@4.4.3)
+        specifier: ^0.13.0
+        version: 0.13.0(@babel/core@7.29.0)(@babel/runtime@7.29.2)(@cloudflare/workers-types@4.20260515.1)(ai@6.0.168(zod@4.4.3))(react@19.2.6)(rolldown@1.0.0-rc.17)(vite@8.0.10(@types/node@25.8.0)(esbuild@0.28.0)(tsx@4.22.0)(yaml@2.9.0))(zod@4.4.3)
       express:
         specifier: ^5.2.1
         version: 5.2.1
@@ -1826,8 +1826,8 @@ packages:
     resolution: {integrity: sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng==}
     engines: {node: '>= 0.6'}
 
-  agents@0.12.4:
-    resolution: {integrity: sha512-NWDwdZkn/422AUS3+iLd3ETIaURLF5eckpXl4INi+Y+qcupSzEDL69j9+bJ0igu5lew6f8f0LuB6uvpvbplwuw==}
+  agents@0.13.0:
+    resolution: {integrity: sha512-I1Kyrg0dhnmfuxM4l/spkEK6j5mhdJ1QL8HtXYnnVZRi3AbbAhx6CotIsFzZiwAMTNAyWq6bWvATvdtAeVIfoQ==}
     hasBin: true
     peerDependencies:
       '@cloudflare/ai-chat': '>=0.6.1 <1.0.0'
@@ -4678,7 +4678,7 @@ snapshots:
       mime-types: 3.0.2
       negotiator: 1.0.0
 
-  agents@0.12.4(@babel/core@7.29.0)(@babel/runtime@7.29.2)(@cloudflare/workers-types@4.20260515.1)(ai@6.0.168(zod@4.4.3))(react@19.2.6)(rolldown@1.0.0-rc.17)(vite@8.0.10(@types/node@25.8.0)(esbuild@0.28.0)(tsx@4.22.0)(yaml@2.9.0))(zod@4.4.3):
+  agents@0.13.0(@babel/core@7.29.0)(@babel/runtime@7.29.2)(@cloudflare/workers-types@4.20260515.1)(ai@6.0.168(zod@4.4.3))(react@19.2.6)(rolldown@1.0.0-rc.17)(vite@8.0.10(@types/node@25.8.0)(esbuild@0.28.0)(tsx@4.22.0)(yaml@2.9.0))(zod@4.4.3):
     dependencies:
       '@babel/plugin-proposal-decorators': 7.29.0(@babel/core@7.29.0)
       '@cfworker/json-schema': 4.1.1
