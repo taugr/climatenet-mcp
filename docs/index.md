@@ -16,8 +16,8 @@ hero:
       text: Tool Reference
       link: /guide/tools
     - theme: brand
-      text: Live Map
-      link: /air-quality-map
+      text: Official Map ↗
+      link: https://climatenet.am/en/#map
 
 features:
   - icon: '🌐'

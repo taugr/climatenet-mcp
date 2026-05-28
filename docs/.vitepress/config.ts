@@ -35,7 +35,7 @@ const versionNav = {
 };
 
 const englishNav = [
-  { text: 'Live Map', link: '/air-quality-map' },
+  { text: 'Official Map', link: 'https://climatenet.am/en/#map' },
   {
     text: 'Guide',
     items: [
@@ -56,7 +56,7 @@ const englishNav = [
 ];
 
 const armenianNav = [
-  { text: 'Կենդանի քարտեզ', link: '/hy/air-quality-map' },
+  { text: 'Պաշտոնական քարտեզ', link: 'https://climatenet.am/en/#map' },
   {
     text: 'Ուղեցույց',
     items: [

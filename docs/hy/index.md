@@ -16,8 +16,8 @@ hero:
       text: Գործիքների հղում
       link: /hy/guide/tools
     - theme: brand
-      text: Կենդանի քարտեզ
-      link: /hy/air-quality-map
+      text: Պաշտոնական քարտեզ ↗
+      link: https://climatenet.am/en/#map
 
 features:
   - icon: '🌐'
