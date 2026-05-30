@@ -16,7 +16,7 @@ The plugin is read-only and requires no API key.
 Install from the public marketplace:
 
 ```sh
-/plugin marketplace add taugr/claude-marketplace
+/plugin marketplace add taugr/taugr-marketplace
 /plugin install climatenet@taugr
 ```
 
