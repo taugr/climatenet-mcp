@@ -16,15 +16,8 @@ The plugin is read-only and requires no API key.
 Install from the public marketplace:
 
 ```sh
-/plugin marketplace add taugr/climatenet-mcp
-/plugin install climatenet@climatenet-mcp
-```
-
-Or, from a local clone:
-
-```sh
-/plugin marketplace add /path/to/climatenet-mcp
-/plugin install climatenet@climatenet-mcp
+/plugin marketplace add taugr/claude-marketplace
+/plugin install climatenet@taugr
 ```
 
 Verify with `/plugin list` and `/mcp`.

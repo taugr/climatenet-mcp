@@ -113,15 +113,8 @@ For Claude Code and Cowork users, this repo also ships as a plugin that bundles 
 ### Claude Code (via marketplace)
 
 ```bash
-/plugin marketplace add taugr/climatenet-mcp
-/plugin install climatenet@climatenet-mcp
-```
-
-Or, from a local clone:
-
-```bash
-/plugin marketplace add /path/to/climatenet-mcp
-/plugin install climatenet@climatenet-mcp
+/plugin marketplace add taugr/claude-marketplace
+/plugin install climatenet@taugr
 ```
 
 ### Cowork
