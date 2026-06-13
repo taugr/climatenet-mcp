@@ -2,6 +2,7 @@ node_modules/
 dist/
 docs/.vitepress/dist/
 docs/.vitepress/cache/
+.DS_Store
 .env
 .wrangler/
 climatenet.plugin
