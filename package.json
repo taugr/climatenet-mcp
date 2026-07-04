@@ -49,7 +49,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260612.1",
+    "@cloudflare/workers-types": "^5.0.0",
     "@types/express": "^5.0.6",
     "@types/node": "^25.9.3",
     "husky": "^9.1.7",
