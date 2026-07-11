@@ -1,5 +1,10 @@
 # ClimateNet Plugin
 
+> [!IMPORTANT]
+> This plugin was retired on July 12, 2026. Its remote MCP endpoint is no
+> longer available. The files in this directory are preserved only as a
+> historical reference and should not be installed.
+
 Query ClimateNet environmental monitoring data from Armenia directly in Claude.
 
 ## What it does
