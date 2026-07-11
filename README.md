@@ -1,195 +1,21 @@
 # ClimateNet MCP
 
-<p align="center">
-  <img src="./docs/public/logo.svg" alt="climatenet-mcp logo" width="160" />
-  <br />
-  <a href="https://climatenet-mcp.tomauger.am/mcp">
-    <img src="https://img.shields.io/badge/MCP-Streamable%20HTTP-2e8b57" alt="MCP endpoint" />
-  </a>
-  <a href="./LICENSE">
-    <img src="https://img.shields.io/github/license/taugr/climatenet-mcp" alt="license" />
-  </a>
-  <br />
-  MCP server for querying ClimateNet environmental monitoring data from Armenia through Codex, Claude, and other MCP clients.
-</p>
+> [!IMPORTANT]
+> This project was retired on July 12, 2026. The hosted MCP endpoint,
+> documentation site, marketplace listing, and plugin distribution are no
+> longer available. This repository is preserved as a read-only historical
+> reference and is not maintained.
 
-> `climatenet-mcp` is an independent project and is not affiliated with, endorsed by, or maintained by ClimateNet.
+`climatenet-mcp` was an independent Model Context Protocol server for querying
+ClimateNet environmental monitoring data from Armenia. It exposed read-only
+tools for discovering devices, inspecting sensor status, retrieving readings,
+and comparing environmental time series.
 
-## About ClimateNet
+The service was retired after its initial public deployment showed no sustained
+MCP usage. Most inbound traffic consisted of automated crawlers and generic
+internet vulnerability scans, so keeping a public deployment online was not
+justified.
 
-[ClimateNet](https://climatenet.am/en) provides real-time environmental
-monitoring for temperature, humidity, and air quality through devices across
-Armenia. The ClimateNet site lists
-[TUMO - Center for Creative Technologies](https://tumo.org/) as a partner and
-links to [TUMO Labs project resources](https://tumolabs.am/en/upcoming-projects/)
-and channels. This MCP server wraps ClimateNet's
-[public API](https://climatenet.am/en/api/) so agents can discover devices,
-inspect sensor status, and query readings through structured MCP tools.
-
-## Features
-
-- 🌐 Hosted Streamable HTTP MCP endpoint
-- 🇦🇲 ClimateNet environmental monitoring data from Armenia
-- 📍 Device discovery with region, status, issue, and sensor filters
-- 📈 Latest readings, historical readings, graph data, and device comparisons
-- 🤖 Read-only tools designed for agent and assistant workflows
-
-## Quickstart
-
-The hosted Streamable HTTP MCP endpoint is:
-
-```text
-https://climatenet-mcp.tomauger.am/mcp
-```
-
-### Codex
-
-Install the server:
-
-```bash
-codex mcp add climatenet --url https://climatenet-mcp.tomauger.am/mcp
-```
-
-Verify it:
-
-```bash
-codex mcp get climatenet
-codex mcp list
-```
-
-This writes a config equivalent to:
-
-```toml
-[mcp_servers.climatenet]
-url = "https://climatenet-mcp.tomauger.am/mcp"
-enabled = true
-```
-
-Restart Codex after adding the server.
-
-### Claude Code
-
-Install the server:
-
-```bash
-claude mcp add --transport http --scope user climatenet https://climatenet-mcp.tomauger.am/mcp
-```
-
-Verify it:
-
-```bash
-claude mcp get climatenet
-claude mcp list
-```
-
-### Claude Desktop (Chat)
-
-Claude Desktop's Chat tab does not support plugins, only MCP connectors. Add a
-custom remote connector in **Settings → Connectors** with this URL:
-
-```text
-https://climatenet-mcp.tomauger.am/mcp
-```
-
-Alternatively, bridge it through `mcp-remote` in `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "climatenet": {
-      "command": "npx",
-      "args": ["mcp-remote", "https://climatenet-mcp.tomauger.am/mcp"]
-    }
-  }
-}
-```
-
-Restart Claude Desktop after updating the config.
-
-## Plugin (Claude Code & Cowork)
-
-For Claude Code and Cowork users, this repo also ships as a plugin that bundles the MCP server with a `climatenet-query` skill that teaches Claude how to chain the tools effectively.
-
-### Claude Code (via marketplace)
-
-```bash
-/plugin marketplace add taugr/taugr-marketplace
-/plugin install climatenet@taugr
-```
-
-### Cowork
-
-Cowork lives inside the Claude Desktop app under the **Cowork** tab.
-
-1. Download `climatenet.plugin` from the [latest release](https://github.com/taugr/climatenet-mcp/releases/latest)
-2. Open Claude Desktop and switch to the **Cowork** tab
-3. In the left sidebar, click **Customize**
-4. Click **Browse plugins**, then choose **upload a custom plugin file**
-5. Select the `climatenet.plugin` file you downloaded
-
-The plugin saves locally to your machine and the `climatenet-query` skill plus MCP server become available immediately.
-
-## Tools
-
-- `list_devices` - list ClimateNet devices with optional status, region, issue, and sensor filters.
-- `get_device` - fetch metadata for one device.
-- `get_latest_reading` - fetch the latest environmental reading for one device.
-- `get_device_readings` - fetch documented API readings, normalized from `keys` plus row arrays into objects.
-- `get_device_graph` - fetch 15-minute graph data for one device and optionally one metric.
-- `compare_devices` - fetch aligned graph series for multiple devices for one metric.
-
-## Local Development
-
-```bash
-pnpm install
-pnpm dev
-```
-
-The local Express Streamable HTTP endpoint is:
-
-```text
-http://localhost:3000/mcp
-```
-
-If port 3000 is already in use, choose another port:
-
-```bash
-PORT=3030 pnpm dev
-```
-
-Useful checks:
-
-```bash
-pnpm build
-pnpm smoke
-pnpm smoke:edge
-```
-
-## Cloudflare Workers
-
-The Worker entrypoint exposes the same MCP tools through Cloudflare's Streamable HTTP
-handler at `/mcp`.
-
-Run the Worker locally:
-
-```bash
-pnpm dev:worker
-```
-
-The local Worker endpoint is:
-
-```text
-http://localhost:8788/mcp
-```
-
-Deploy with:
-
-```bash
-pnpm deploy:worker
-```
-
-The deployed endpoint will be:
-
-```text
-https://climatenet-mcp.<account>.workers.dev/mcp
-```
+The source remains available under the [MIT License](./LICENSE) for historical
+and educational reference. It is not affiliated with, endorsed by, or
+maintained by ClimateNet.
